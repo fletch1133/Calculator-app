@@ -67,56 +67,61 @@
 //   });
 
 
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const port = 3000;
 
-const server = http.createServer(function(req, res) {
-    let filePath;
 
-    if (req.url === '/' || req.url === '/index.html') {
-        filePath = 'index.html';
-    } else if (req.url === '/style.css') {
-        filePath = 'style.css';
-    } else if (req.url === '/calapp.js') {
-        filePath = 'calapp.js';
-    } else {
-        res.writeHead(404);
-        res.write('Error: File Not Found');
-        res.end();
-        return;
-    }
 
-    fs.readFile(filePath, function(error, data) {
-        if (error) {
-            res.writeHost(404);
-            res.write('Error: File Not Found')
-        } else {
-            const contentType = getContentType(filePath);
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.write(data); 
-        }
-        res.end()
-    });
-});
 
-server.listen(port, function(error) {
-    if (error) {
-        console.log('Something went wrong'. error);
-    } else {
-        console.log('Server is listening on port ' + port);
-    }
-});
 
-function getContentType(filePath) {
-    const extname = path.extname(filePath).toLowerCase();
-    if (extname === '.html') {
-        return 'text/html';
-    } else if (extname === '.css') {
-        return 'text/css';
-    } else if (extname == '.js') {
-        return 'text/javascript';
-    }
-    return 'text/plain';
-}
+// const http = require('http');
+// const fs = require('fs');
+// const path = require('path');
+// const port = 3000;
+
+// const server = http.createServer(function(req, res) {
+//     let filePath;
+
+//     if (req.url === '/' || req.url === '/index.html') {
+//         filePath = 'index.html';
+//     } else if (req.url === '/style.css') {
+//         filePath = 'style.css';
+//     } else if (req.url === '/calapp.js') {
+//         filePath = 'calapp.js';
+//     } else {
+//         res.writeHead(404);
+//         res.write('Error: File Not Found');
+//         res.end();
+//         return;
+//     }
+
+//     fs.readFile(filePath, function(error, data) {
+//         if (error) {
+//             res.writeHost(404);
+//             res.write('Error: File Not Found')
+//         } else {
+//             const contentType = getContentType(filePath);
+//             res.writeHead(200, { 'Content-Type': contentType });
+//             res.write(data); 
+//         }
+//         res.end()
+//     });
+// });
+
+// server.listen(port, function(error) {
+//     if (error) {
+//         console.log('Something went wrong'. error);
+//     } else {
+//         console.log('Server is listening on port ' + port);
+//     }
+// });
+
+// function getContentType(filePath) {
+//     const extname = path.extname(filePath).toLowerCase();
+//     if (extname === '.html') {
+//         return 'text/html';
+//     } else if (extname === '.css') {
+//         return 'text/css';
+//     } else if (extname == '.js') {
+//         return 'text/javascript';
+//     }
+//     return 'text/plain';
+// }
