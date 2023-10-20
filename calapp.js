@@ -2,6 +2,7 @@ class Calculator {                                  //declaration of class calle
     constructor(prevOperAndTextElement, currOperAndTextElement) {        //defines class constructor method, called when you create new instance of calc class, two params taken in
     this.prevOperAndTextElement = prevOperAndTextElement;   //sets instance variable to new created object(this) to value of prevOper, refers back to HTML
     this.currOperAndTextElement = currOperAndTextElement;    //Same logic as above
+    this.resultElement = resultElement;       //refers back to ln (16) in HTML, same as above
     this.clear();      //called method clear on created obj, reset calc's state
     }      //closes constructor and class
 
@@ -89,19 +90,21 @@ class Calculator {                                  //declaration of class calle
                 `${this.getDisplayNumber(this.prevOperand)} ${this.operation}`; 
         } else {
             this.prevOperAndTextElement.innerText = '';
-        } 
+        }
+        this.resultElement.innerText = this.currOperand;  //Updates the result element
     }
 }  
 
-const numberButtons = document.querySelectorAll('[data-number]') 
-const operationButtons = document.querySelectorAll('[data-operation]')
-const equalButton = document.querySelector('[data-equal]')  
-const allClearButton = document.querySelector('[data-all-clear]') 
-const deleteButton = document.querySelector('[data-delete]') 
-const prevOperAndTextElement = document.querySelector('[data-previous-operand]') 
-const currOperAndTextElement = document.querySelector('[data-current-operand]') 
+const numberButtons = document.querySelectorAll('[data-number]');
+const operationButtons = document.querySelectorAll('[data-operation]');
+const equalButton = document.querySelector('[data-equal]');  
+const allClearButton = document.querySelector('[data-all-clear]'); 
+const deleteButton = document.querySelector('[data-delete]'); 
+const prevOperAndTextElement = document.querySelector('[data-previous-operand]'); 
+const currOperAndTextElement = document.querySelector('[data-current-operand]'); 
+const resultElement = document.querySelector('[data-result]');
 
-const calculator = new Calculator(prevOperAndTextElement, currOperAndTextElement)
+const calculator = new Calculator(prevOperAndTextElement, currOperAndTextElement, resultElement);
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -133,6 +136,7 @@ deleteButton.addEventListener('click', () => {
     calculator.delete();
     calculator.updateDisplay();   
 });
+
 
 document.addEventListener('keydown', function (event) {
     let patternForNumbers = /[0-9]/g;
