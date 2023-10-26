@@ -4,6 +4,8 @@ const path = require('path')
 
 const app = express() 
 
+app.use(express.static('Server')); 
+
 app.use(express.json())  //configuring middleware, checking the content type
 app.use(cors()) 
 

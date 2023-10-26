@@ -1,3 +1,5 @@
+
+
 class Calculator {                                  //declaration of class called 'Calculator' creates objs with shared propeties and methods
     constructor(prevOperAndTextElement, currOperAndTextElement) {        //defines class constructor method, called when you create new instance of calc class, two params taken in
     this.prevOperAndTextElement = prevOperAndTextElement;   //sets instance variable to new created object(this) to value of prevOper, refers back to HTML
@@ -65,7 +67,7 @@ class Calculator {                                  //declaration of class calle
         this.prevOperand = ''; 
     }
 
-    getDisplayNumber(number) {
+    getDisplayNumber(number) { 
         const stringNumber = number.toString();
         const integerDigits = parseFloat(stringNumber.split('.')[0]);
         const decimalDigits = stringNumber.split('.')[1];
